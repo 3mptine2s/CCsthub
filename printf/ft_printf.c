@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int fmtchecker(char c, va_list args)
+int	fmtchecker(char c, va_list args)
 {
 	if (c == 'c')
 		return (charhandler(va_arg(args, unsigned int)));
@@ -38,25 +38,26 @@ int fmtchecker(char c, va_list args)
 	}
 }
 
-int ft_printf(const char *inp, ...)
+int	ft_printf(const char *inp, ...)
 {
 	int		count;
-	va_list hello;
+	va_list	hello;
 
 	if (!inp)
 		return (-1);
 	count = 0;
-    va_start(hello,inp);
+	va_start(hello, inp);
 	while (*inp)
 	{
 		if (*inp == '%')
 			count += fmtchecker(*++inp, hello);
 		else
 		{
-			write(1,inp,1);
+			write(1, inp, 1);
 			count++;
 		}
 		inp++;
 	}
+	va_end(hello);
 	return (count);
 }

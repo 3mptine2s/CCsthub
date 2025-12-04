@@ -20,7 +20,7 @@ void	puthexlow(unsigned int n)
 	write(1, &hex[n % 16], 1);
 }
 
-int		hexput(unsigned int n, int caps)
+int	hexput(unsigned int n, int caps)
 {
 	int	len;
 
@@ -57,7 +57,6 @@ int	numlen(long n)
 	}
 	return (len);
 }
-
 
 int	ft_putnbr(long nb)
 {

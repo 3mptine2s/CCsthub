@@ -6,7 +6,7 @@ int	charhandler(char c)
 	return (1);
 }
 
-int	perchandler()
+int	perchandler(void)
 {
 	ftputc('%');
 	return (1);
@@ -15,20 +15,20 @@ int	perchandler()
 void	putnstr(char *c, int n)
 {
 	while (*c && n--)
-		write(1,c++,1);
+		write(1, c++, 1);
 }
 
-int		strhandler(char *c)
+int	strhandler(char *c)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	if (!c)
 	{
-		putnstr("(null)",6);
+		putnstr("(null)", 6);
 		return (6);
 	}
 	len = ftstrlen(c);
-	putnstr(c,len);
+	putnstr(c, len);
 	return (len);
 }

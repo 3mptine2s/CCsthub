@@ -10,7 +10,7 @@ void	putptrlow(uintptr_t n)
 	write(1, &hex[n % 16], 1);
 }
 
-int ptrput(uintptr_t ptr)
+int	ptrput(uintptr_t ptr)
 {
 	int	len;
 
@@ -23,7 +23,7 @@ int ptrput(uintptr_t ptr)
 	return (len);
 }
 
-int ptrhandler(void *ptr)
+int	ptrhandler(void *ptr)
 {
 	uintptr_t	cast;
 	int			len;
@@ -32,12 +32,11 @@ int ptrhandler(void *ptr)
 	cast = (uintptr_t)ptr;
 	if (ptr == NULL)
 	{
-		putnstr("(nil)",5);
+		putnstr("(nil)", 5);
 		return (5);
 	}
-	putnstr("0x",2);
+	putnstr("0x", 2);
 	len += 2;
 	len += ptrput(cast);
 	return (len);
 }
-

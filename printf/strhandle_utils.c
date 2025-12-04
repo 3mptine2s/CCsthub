@@ -2,22 +2,21 @@
 
 void	ftputc(char c)
 {
-	write(1,&c,1);
+	write(1, &c, 1);
 }
 
-int		pctprint()
+int	pctprint(void)
 {
 	ftputc('%');
-	return	(1);
+	return (1);
 }
 
-int		ftstrlen(char *c)
+int	ftstrlen(char *c)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(c[i])
+	while (c[i])
 		i++;
 	return (i);
 }
-
