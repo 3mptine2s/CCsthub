@@ -1,20 +1,17 @@
-#include "mlx_linux/mlx.h"
-#include <X11/keysym.h>
-#include <math.h>
-#include <stdlib.h>
+#include "fractol.h"
 
-typedef struct svar
+
+void fast_pixel_put(xvar *data, int x, int y, int color)
 {
-	void	*mlx_con; //free mlx_destroy_display free prio (img, win, dis) or small to big
-	void	*mlx_win; //free mlx_destroy_window
-	void	*img; //free mlx_destroy_image
-	char	*addr;
-	int	 	bpp; //bit per pix
-	int	 	line_len; //bytes per one horizontal line
-	int	 	endian; // how the cpu read (no need to bother)
-} xvar;
+	char	*dst;
+	int		offset;
 
-int event_handler(int keyid, xvar *var) // for key hook
+	offset = (y * data->line_len) + (x * (data->bpp)/8); //offset calc
+	dst = data->addr + offset;
+	*(unsigned int *) dst = color;
+}
+
+int		key_event_handler(int keyid, xvar *var) // for key hook
 {
 	if (keyid == XK_Escape) // close program
 	{
@@ -27,7 +24,42 @@ int event_handler(int keyid, xvar *var) // for key hook
 	return (0);
 }
 
+void	render(xvar *mlx)
+{
+	tcomplex	C;
+	int			x;
+	int			y;
+
+	x = 0;
+	y = 0;
+	while (y < MAX_WIN_H)
+	{
+		x = 0;
+		while (x < MAX_WIN_WID)
+		{
+			C.imag = xtocoord(y,MAX_WIN_WID,(-2 * mlx->zoom),(2 * mlx->zoom));
+			C.real = xtocoord(x,MAX_WIN_WID,(-2 * mlx->zoom),(2 * mlx->zoom));
+			fast_pixel_put(mlx,x,y,stresstestmendel(C));
+			x++;
+		}
+		y++;
+	}
+	mlx_put_image_to_window(mlx->mlx_con,mlx->mlx_win,mlx->img,0,0);
+}
+
 int main(int argc, char *argv[])
 {
-    
+    if (argc == 2 && ft_strncmp("mandelbrot", argv[1]) == 0)
+    {
+		createmendel();
+		return (1);
+    }
+	else if (argc == 4 && ft_strncmp("julia", argv[1]) == 0)
+	{
+		createjulia(ft_atoi(argv[2]), ft_atoi(argv[3]));
+		return (1);
+	}
+	ft_printf("Usage : \n ./fractol mandelbrot\n ");
+	ft_printf("./fractol julia double1 double2");
+	exit(1);
 }

@@ -2,7 +2,7 @@ NAME		= fractol
 CC	  		= cc
 CFLAGS  	= -Wall -Wextra -Werror
 
-SRC	 		= test.c
+SRC	 		= fractol.c math.c renderer.c eventhandle.c
 OBJ	 		= $(SRC:.c=.o)
 
 PRNTF   	= ./ftprintf
