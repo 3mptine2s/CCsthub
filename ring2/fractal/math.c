@@ -1,25 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   math.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sthubthi <sthubthi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/01 12:31:27 by sthubthi          #+#    #+#             */
+/*   Updated: 2026/04/01 13:21:26 by sthubthi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-double xtocoord(int pix, int screensize, double math_min, double math_max)
+double	xtocoord(int pix, int ss, double min, double max)
 {
-	double range;
+	double	range;
 
-	range = math_max - math_min;
-	return(math_min + ((double) pix * (range / (double) screensize)));
+	range = max - min;
+	return (min + ((double) pix * (range / (double) ss)));
 }
 
-tcomplex	complex_square(tcomplex z)//z squared
+t_complex	complex_square(t_complex z)
 {
-	tcomplex	result;
+	t_complex	result;
 
 	result.real = (z.real * z.real) - (z.imag * z.imag);
 	result.imag = 2.0 * z.real * z.imag;
-	return(result);
+	return (result);
 }
 
-int	stresstestmendel(tcomplex C)
+int	stresstestmendel(t_complex C)
 {
-	tcomplex	z;
+	t_complex	z;
 	int			i;
 
 	z.real = 0.0;
@@ -34,7 +46,7 @@ int	stresstestmendel(tcomplex C)
 			return (i * 0x0A0214);
 		i++;
 	}
-	return(0x000000);
+	return (0x000000);
 }
 
 int	ft_strncmp(const char *s1, const char *s2)
@@ -51,11 +63,11 @@ int	ft_strncmp(const char *s1, const char *s2)
 	return (0);
 }
 
-double ft_atoi(const char *nptr)
+double	ft_atoi(const char *nptr)
 {
-	double  result;
-	double  sign;
-	double  divisor;
+	double	result;
+	double	sign;
+	double	divisor;
 
 	result = 0.0;
 	sign = 1.0;

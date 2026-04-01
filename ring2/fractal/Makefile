@@ -1,20 +1,32 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sthubthi <sthubthi@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/04/01 12:31:34 by sthubthi          #+#    #+#              #
+#    Updated: 2026/04/01 12:31:35 by sthubthi         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME		= fractol
 CC	  		= cc
 CFLAGS  	= -Wall -Wextra -Werror
 
-SRC	 		= fractol.c math.c renderer.c eventhandle.c
+SRC	 		= $(wildcard ./*.c)
 OBJ	 		= $(SRC:.c=.o)
 
-PRNTF   	= ./ftprintf
-PRNTFL  	= $(PRNTF)/libftprintf.a
-PRNTFI  	= -I$(PRNTF)
+PRNTF		= ./ftprintf
+PRNTFL		= $(PRNTF)/libftprintf.a
+PRNTFI		= -I$(PRNTF)
 
 MLX	 		= ./mlx_linux
 MLXL		= $(MLX)/libmlx.a
 MLXI		= -I$(MLX)
 MLX_FLAGS 	= -L$(MLX) -lmlx -lXext -lX11 -lm
 
-# 'all' is at the top so it is the default rule
+
 all: $(NAME)
 
 %.o: %.c

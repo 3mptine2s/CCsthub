@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   uinthandle.c                                       :+:      :+:    :+:   */
+/*   closeprogram.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sthubthi <sthubthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/01 12:32:06 by sthubthi          #+#    #+#             */
-/*   Updated: 2026/04/01 12:32:07 by sthubthi         ###   ########.fr       */
+/*   Created: 2026/04/01 14:29:40 by sthubthi          #+#    #+#             */
+/*   Updated: 2026/04/01 14:35:36 by sthubthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "fractol.h"
 
-int	uinthandler(int n)
+int	close_programm(t_var *var)
 {
-	unsigned long	num;
+	mlx_destroy_image(var->mlx_con, var->img);
+	mlx_destroy_window(var->mlx_con, var->mlx_win);
+	mlx_destroy_display(var->mlx_con);
+	free(var->mlx_con);
+	exit(1);
+}
 
-	if (n >= 0)
-		return (ft_putnbr(n));
-	num = (unsigned long)n + 4294967296;
-	return (ft_putnbr(num));
+int	close_programj(t_jvar *var)
+{
+	mlx_destroy_image(var->mlx_con, var->img);
+	mlx_destroy_window(var->mlx_con, var->mlx_win);
+	mlx_destroy_display(var->mlx_con);
+	free(var->mlx_con);
+	exit(1);
 }
