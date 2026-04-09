@@ -1,48 +1,44 @@
-CLIENT_NAME	= client
-SERVER_NAME	= server
-CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
 
-SOURCE_PATH	= src/
-INCLUDE_PATH = include/
-BUILD_PATH	= build/
-LIBFT_PATH	= lib/libft/
-LIBFT		= $(LIBFT_PATH)/libft.a
+CC = gcc
 
-CLIENT_SRC	= client.c
-SERVER_SRC	= server.c
+CFLAGS = -I. -I./libft
 
-CLIENT_OBJS = $(addprefix $(BUILD_PATH), $(CLIENT_SRC:.c=.o))
-SERVER_OBJS = $(addprefix $(BUILD_PATH), $(SERVER_SRC:.c=.o))
+NAME_SERVER = server
+NAME_CLIENT = client
 
-all: $(CLIENT_NAME) $(SERVER_NAME)
+SRC_SERVER = server.c
+SRC_CLIENT = client.c
+
+OBJ_SERVER = $(SRC_SERVER:.c=.o)
+OBJ_CLIENT = $(SRC_CLIENT:.c=.o)
+
+LIBFT_DIR = ./libft
+
+LIBFT = $(LIBFT_DIR)/libft.a
+
+all: $(LIBFT) $(NAME_SERVER) $(NAME_CLIENT)
 
 $(LIBFT):
 	@echo "Compiling libft..."
-	@make -C $(LIBFT_PATH)
+	@make -C $(LIBFT_DIR)
 
-$(CLIENT_NAME): $(LIBFT) $(CLIENT_OBJS)
-	@echo "Linking $(CLIENT_NAME)..."
-	@$(CC) $(CFLAGS) $(CLIENT_OBJS) $(LIBFT) -o $(CLIENT_NAME)
-	@echo "$(CLIENT_NAME) build successful."
+$(NAME_SERVER): $(OBJ_SERVER) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJ_SERVER) $(LIBFT) -o $(NAME_SERVER)
+	@echo "Server compiled successfully!"
 
-$(SERVER_NAME): $(LIBFT) $(SERVER_OBJS)
-	@echo "Linking $(SERVER_NAME)..."
-	@$(CC) $(CFLAGS) $(SERVER_OBJS) $(LIBFT) -o $(SERVER_NAME)
-	@echo "$(SERVER_NAME) build successful."
-
-$(BUILD_PATH)%.o: $(SOURCE_PATH)%.c $(INCLUDE_PATH)/minitalk.h Makefile
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -I$(INCLUDE_PATH) -c $< -o $@
-	@printf "Compiling: $(notdir $<)\n"
+$(NAME_CLIENT): $(OBJ_CLIENT) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJ_CLIENT) $(LIBFT) -o $(NAME_CLIENT)
+	@echo "Client compiled successfully!"
 
 clean:
-	@make -C $(LIBFT_PATH) clean -s
-	@rm -rf $(BUILD_PATH)
+	rm -f $(OBJ_SERVER) $(OBJ_CLIENT)
+	@make -C $(LIBFT_DIR) clean
+	@echo "Object files removed."
 
 fclean: clean
-	@make -C $(LIBFT_PATH) fclean -s
-	@rm -f $(CLIENT_NAME) $(SERVER_NAME)
+	rm -f $(NAME_SERVER) $(NAME_CLIENT)
+	@make -C $(LIBFT_DIR) fclean
+	@echo "Executables removed."
 
 re: fclean all
 
