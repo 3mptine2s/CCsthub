@@ -94,7 +94,7 @@ void radix_sort(t_node **stack_a, t_node **stack_b, int size)
 
 void ft_perror()
 {
-	ft_putstr_fd("Error",2);
+	ft_putstr_fd("Error\n",2);
 }
 
 int main(int argc, char **argv)

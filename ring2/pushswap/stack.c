@@ -84,8 +84,12 @@ int alldigit(char **args)
 	while (args[i])
 	{
 		j = 0;
+        while (args[i][j] == '+' || args[i][j] == '-')
+            {
+                j++;
+            }
 		while (args[i][j])
-		{
+		{   
 			if (!(ft_isdigit(args[i][j])))
 				return (0);
 			j++;
