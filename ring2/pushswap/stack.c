@@ -74,3 +74,23 @@ int is_sorted(t_node **stack)
     }
     return (1);
 }
+
+int alldigit(char **args)
+{
+	int i;
+	int	j;
+
+	i = 1;
+	while (args[i])
+	{
+		j = 0;
+		while (args[i][j])
+		{
+			if (!(ft_isdigit(args[i][j])))
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}

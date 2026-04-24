@@ -92,6 +92,11 @@ void radix_sort(t_node **stack_a, t_node **stack_b, int size)
 	}
 }
 
+void ft_perror()
+{
+	ft_putstr_fd("Error",2);
+}
+
 int main(int argc, char **argv)
 {
 	t_node  *headA;
@@ -101,8 +106,11 @@ int main(int argc, char **argv)
 	headA = NULL;
 	headB = NULL;
 	i = 1;
-	if (argc < 2)
+	if ((alldigit(argv) == 0) || argc < 2)
+	{
+		ft_perror();
 		return (1);
+	}
 	while (argv[i])
 	{
 		insertTail(&headA, ft_atoi(argv[i]));

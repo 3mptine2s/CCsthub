@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "libft/libft.h"
 
 typedef struct snode
 {
@@ -19,7 +20,7 @@ t_node *getLast(t_node **head);
 void 	ra(t_node **aHead);
 void	pa(t_node **stackA, t_node **stackB);
 void	pb(t_node **stackA, t_node **stackB);
-void	ft_putstr_fd(char const *s, int fd);
 void 	free_stack(t_node **stack);
 int 	is_sorted(t_node **stack);
+int 	alldigit(char **args);
 #endif
