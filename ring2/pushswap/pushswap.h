@@ -13,10 +13,10 @@ typedef struct snode
 	struct snode	*prev;
 }	t_node;
 
-t_node	*startNode(int val);
-void	insertTail(t_node **head, int value);
+t_node	*startnode(int val);
+void	inserttail(t_node **head, int value);
 int		ft_atoi(const char *nptr);
-t_node	*getLast(t_node **head);
+t_node	*getlast(t_node **head);
 void	ra(t_node **aHead);
 void	pa(t_node **stackA, t_node **stackB);
 void	pb(t_node **stackA, t_node **stackB);

@@ -10,7 +10,7 @@ void	ra(t_node **aHead)
 		return ;
 	first = *aHead;
 	second = first->next;
-	last = getLast(aHead);
+	last = getlast(aHead);
 	second->prev = NULL;
 	first->next = NULL;
 	first->prev = last;

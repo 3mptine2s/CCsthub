@@ -37,7 +37,7 @@ void	inserttail(t_node **head, int value)
 
 	if (head == NULL)
 		return ;
-	newnode = startNode(value);
+	newnode = startnode(value);
 	if (!(newnode))
 		return ;
 	current = *head;

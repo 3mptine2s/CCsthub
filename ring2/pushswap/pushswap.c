@@ -88,7 +88,7 @@ int	main(int argc, char **argv)
 	}
 	while (argv[i])
 	{
-		insertTail(&heada, ft_atoi(argv[i]));
+		inserttail(&heada, ft_atoi(argv[i]));
 		i++;
 	}
 	norm2(&heada);
