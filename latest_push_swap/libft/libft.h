@@ -55,5 +55,4 @@ void	ft_putnbr_fd(int n, int fd);
 
 // Own coded functions
 void	ft_free_split(char **str_array);
-void	ft_find_dup(char **args, int start);
 #endif

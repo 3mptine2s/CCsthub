@@ -69,20 +69,30 @@ void	pb(t_node **stacka, t_node **stackb)
 
 void	is_sorted(char **args, int start)
 {
-	int	i;
+	int		i;
+	char	**fr;
 
+	fr = NULL;
+	if (start == 0)
+		fr = args;
 	if (!args || !args[start] || !args[start + 1])
-		return ;
+	{
+		if (fr)
+			ft_free_split(fr);
+		exit(0);
+	}
 	i = start;
 	while (args[i + 1] != NULL)
 	{
-		if (ft_atoi(args[i]) > ft_atoi(args[i + 1]))
+		if (ps_atoi(args[i], fr, NULL) > ps_atoi(args[i + 1], fr, NULL))
 		{
 			return ;
 		}
 		i++;
 	}
-	exit(1);
+	if (fr)
+		ft_free_split(fr);
+	exit(0);
 }
 
 void	alldigit(char **args, int start)
@@ -97,15 +107,15 @@ void	alldigit(char **args, int start)
 		if (args[i][j] == '+' || args[i][j] == '-')
 			j++;
 		if (!args[i][j] && start == 1)
-			ft_perror(NULL);
+			ft_perror(NULL, NULL);
 		if (!args[i][j] && start == 0)
-			ft_perror(args);
+			ft_perror(args, NULL);
 		while (args[i][j])
 		{
 			if (!(ft_isdigit(args[i][j])) && start == 1)
-				ft_perror(NULL);
+				ft_perror(NULL, NULL);
 			if (!(ft_isdigit(args[i][j])) && start == 0)
-				ft_perror(args);
+				ft_perror(args, NULL);
 			j++;
 		}
 		i++;

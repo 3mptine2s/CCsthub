@@ -95,11 +95,13 @@ void	sort_long(char *str)
 	headb = NULL;
 	i = 0;
 	spltstr = ft_split(str, ' ');
+	if (!spltstr || !spltstr[0])
+		ft_perror(spltstr, NULL);
 	ft_find_dup(spltstr, 0);
 	alldigit(spltstr, 0);
 	while (spltstr[i])
 	{
-		inserttail(&heada, ft_atoi(spltstr[i]));
+		inserttail(&heada, ps_atoi(spltstr[i], spltstr, &heada));
 		i++;
 	}
 	norm2(&heada);

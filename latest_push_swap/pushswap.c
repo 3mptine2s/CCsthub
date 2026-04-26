@@ -41,6 +41,8 @@ int	get_max_bits(int size)
 	int	maxnorm;
 	int	maxbit;
 
+	if (size <= 0)
+		return (0);
 	maxbit = 0;
 	maxnorm = size - 1;
 	while ((maxnorm >> maxbit) != 0)
@@ -79,8 +81,10 @@ void	radix_sort(t_node **stack_a, t_node **stack_b, int size)
 	}
 }
 
-void	ft_perror(char **arr)
+void	ft_perror(char **arr, t_node **head)
 {
+	if (head)
+		free_stack(head);
 	if (arr)
 		ft_free_split(arr);
 	ft_putstr_fd("Error\n", 2);
@@ -97,7 +101,7 @@ int	main(int argc, char **argv)
 	headb = NULL;
 	i = 1;
 	if (argc == 2 && argv[1][0] == '\0')
-		ft_perror(NULL);
+		ft_perror(NULL, NULL);
 	if (argc < 2)
 		return (1);
 	ft_find_dup(argv, 1);
@@ -107,7 +111,7 @@ int	main(int argc, char **argv)
 	alldigit(argv, 1);
 	while (argv[i])
 	{
-		inserttail(&heada, ft_atoi(argv[i]));
+		inserttail(&heada, ps_atoi(argv[i], NULL, &heada));
 		i++;
 	}
 	norm2(&heada);
