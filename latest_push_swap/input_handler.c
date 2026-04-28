@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pushswap.c                                         :+:      :+:    :+:   */
+/*   input_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sthubthi <sthubthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 14:34:52 by sthubthi          #+#    #+#             */
-/*   Updated: 2026/04/25 17:50:26 by sthubthi         ###   ########.fr       */
+/*   Updated: 2026/04/28 10:40:35 by sthubthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	is_sorted(char **args, int start)
 	exit(0);
 }
 
-void    alldigit(char **args, int start)
+void	alldigit(char **args, int start)
 {
 	int		i;
 	int		j;
@@ -126,7 +126,7 @@ void    alldigit(char **args, int start)
 				ft_perror(fr, NULL, "Digit Error");
 			j++;
 		}
-		ps_atoi(args[i], fr, NULL); 
+		ps_atoi(args[i], fr, NULL);
 		i++;
 	}
 }
