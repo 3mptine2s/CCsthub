@@ -36,9 +36,16 @@ void	pb(t_node **stackA, t_node **stackB);
 void	free_stack(t_node **stack);
 void	is_sorted(char **args, int start);
 void	alldigit(char **args, int start);
-void	ft_perror(char **arr, t_node **head);
+void	ft_perror(char **arr, t_node **head, char *reason);
 void	radix_sort(t_node **stack_a, t_node **stack_b, int size);
 void	norm2(t_node **head);
 void	sort_long(char *str);
+int		get_position(t_node *stack, int target);
+void	push_target(t_node **stack_a, t_node **stack_b, int t, int s);
+void	sort_3(t_node **stack_a);
+void	sort_small(t_node **stack_a, t_node **stack_b, int size);
+void	execute_sort(t_node **heada, t_node **headb, int size);
+void	sa(t_node **stacka);
+void	rra(t_node **stacka);
 
 #endif

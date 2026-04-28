@@ -36,7 +36,7 @@ int	ft_atoi(const char *nptr)
 	}
 	if (result > __INT_MAX__ || result < -2147483647)
 	{
-		ft_perror(NULL, NULL);
+		ft_perror(NULL, NULL, "Int cap");
 	}
 	return (result * sign);
 }

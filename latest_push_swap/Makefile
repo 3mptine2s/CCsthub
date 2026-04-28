@@ -2,7 +2,7 @@ NAME        = push_swap
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
 
-SRC         = pushswap.c stack.c linkedList.c input_handler.c
+SRC         = pushswap.c stack.c linkedList.c input_handler.c helper.c
 OBJ         = $(SRC:.c=.o)
 
 LIB         = ./libft

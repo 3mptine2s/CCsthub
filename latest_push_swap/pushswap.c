@@ -81,12 +81,18 @@ void	radix_sort(t_node **stack_a, t_node **stack_b, int size)
 	}
 }
 
-void	ft_perror(char **arr, t_node **head)
+void	ft_perror(char **arr, t_node **head, char *reason)
 {
 	if (head)
 		free_stack(head);
 	if (arr)
 		ft_free_split(arr);
+	if (!reason)
+	{
+		ft_putstr_fd("Error, Cause : ", 2);
+		ft_putstr_fd(reason, 2);
+		ft_putstr_fd("\n", 2);
+	}
 	ft_putstr_fd("Error\n", 2);
 	exit(1);
 }
@@ -100,22 +106,20 @@ int	main(int argc, char **argv)
 	heada = NULL;
 	headb = NULL;
 	i = 1;
-	if (argc == 2 && argv[1][0] == '\0')
-		ft_perror(NULL, NULL);
 	if (argc < 2)
 		return (1);
-	ft_find_dup(argv, 1);
 	if (argc == 2)
 		sort_long(argv[1]);
-	is_sorted(argv, 1);
 	alldigit(argv, 1);
+	ft_find_dup(argv, 1);
+	is_sorted(argv, 1);
 	while (argv[i])
 	{
 		inserttail(&heada, ps_atoi(argv[i], NULL, &heada));
 		i++;
 	}
 	norm2(&heada);
-	radix_sort(&heada, &headb, i - 1);
+	execute_sort(&heada, &headb, i - 1);
 	free_stack(&heada);
 	return (0);
 }

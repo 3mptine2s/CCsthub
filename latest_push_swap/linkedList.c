@@ -96,16 +96,17 @@ void	sort_long(char *str)
 	i = 0;
 	spltstr = ft_split(str, ' ');
 	if (!spltstr || !spltstr[0])
-		ft_perror(spltstr, NULL);
-	ft_find_dup(spltstr, 0);
+		ft_perror(spltstr, NULL, "No str");
 	alldigit(spltstr, 0);
+	ft_find_dup(spltstr, 0);
+	is_sorted(spltstr, 0);
 	while (spltstr[i])
 	{
 		inserttail(&heada, ps_atoi(spltstr[i], spltstr, &heada));
 		i++;
 	}
 	norm2(&heada);
-	radix_sort(&heada, &headb, i);
+	execute_sort(&heada, &headb, i);
 	ft_free_split(spltstr);
 	free_stack(&heada);
 	exit(0);

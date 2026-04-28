@@ -67,57 +67,42 @@ void	pb(t_node **stacka, t_node **stackb)
 	ft_putstr_fd("pb\n", 1);
 }
 
-void	is_sorted(char **args, int start)
+void	sa(t_node **stacka)
 {
-	int		i;
-	char	**fr;
+	t_node	*first;
+	t_node	*second;
+	t_node	*third;
 
-	fr = NULL;
-	if (start == 0)
-		fr = args;
-	if (!args || !args[start] || !args[start + 1])
-	{
-		if (fr)
-			ft_free_split(fr);
-		exit(0);
-	}
-	i = start;
-	while (args[i + 1] != NULL)
-	{
-		if (ps_atoi(args[i], fr, NULL) > ps_atoi(args[i + 1], fr, NULL))
-		{
-			return ;
-		}
-		i++;
-	}
-	if (fr)
-		ft_free_split(fr);
-	exit(0);
+	if (!stacka || !*stacka || !(*stacka)->next)
+		return ;
+	first = *stacka;
+	second = first->next;
+	third = second->next;
+	first->next = third;
+	if (third != NULL)
+		third->prev = first;
+	second->next = first;
+	second->prev = NULL;
+	first->prev = second;
+	*stacka = second;
+	ft_putstr_fd("sa\n", 1);
 }
 
-void	alldigit(char **args, int start)
+void	rra(t_node **stacka)
 {
-	int	i;
-	int	j;
+	t_node	*first;
+	t_node	*last;
+	t_node	*second_last;
 
-	i = start;
-	while (args[i])
-	{
-		j = 0;
-		if (args[i][j] == '+' || args[i][j] == '-')
-			j++;
-		if (!args[i][j] && start == 1)
-			ft_perror(NULL, NULL);
-		if (!args[i][j] && start == 0)
-			ft_perror(args, NULL);
-		while (args[i][j])
-		{
-			if (!(ft_isdigit(args[i][j])) && start == 1)
-				ft_perror(NULL, NULL);
-			if (!(ft_isdigit(args[i][j])) && start == 0)
-				ft_perror(args, NULL);
-			j++;
-		}
-		i++;
-	}
+	if (!stacka || !*stacka || !(*stacka)->next)
+		return ;
+	first = *stacka;
+	last = getlast(stacka);
+	second_last = last->prev;
+	second_last->next = NULL;
+	last->prev = NULL;
+	last->next = first;
+	first->prev = last;
+	*stacka = last;
+	ft_putstr_fd("rra\n", 1);
 }
